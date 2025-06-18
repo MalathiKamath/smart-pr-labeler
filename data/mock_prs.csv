@@ -1,0 +1,5 @@
+title,body,label
+"Fix crash on null input","This PR fixes the null pointer crash in login flow",bug
+"Add user analytics","Introduced Mixpanel events to track user sessions",feature
+"Refactor Auth flow","Cleaned up AuthService and removed legacy code",refactor
+"Update README","Improved installation instructions",documentation
