@@ -44,9 +44,12 @@ Mock GitHub PR data for rapid prototyping
 - pandas
   
 ## How to Run
-python model/train_model.py
+python model/train_model.py 
+
 python model/predict.py
+
 pip install -r requirements.txt
+
 python app/interface.py
 
 ## Demo
