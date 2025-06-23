@@ -15,12 +15,12 @@ def classify(text):
 def fetch_and_label_prs(token, repo_name, max_prs=5):
     g = Github(token)
     repo = g.get_repo(repo_name)
-    pulls = repo.get_pulls(state='open', sort='created')[:max_prs]
+    pulls = repo.get_pulls(state='all', sort='created')[:max_prs]
 
     for pr in pulls:
         text = (pr.title or "") + " " + (pr.body or "")
         label, confidence = classify(text)
-        print(f"[PR #{pr.number}] {pr.title} → Label: {label} ({confidence:.2%})")
+        print(f"[PR #{pr.number}] {pr.title} - > Label: {label} ({confidence:.2%})")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
