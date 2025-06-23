@@ -52,6 +52,13 @@ pip install -r requirements.txt
 
 python app/interface.py
 
+python github/auto_label_prs.py \
+  --token ghp_ABC123 \
+  --repo MalathiKamath/smart-pr-labeler \
+  --max 3
+
+
+
 ## Demo
 Coming soon...
 

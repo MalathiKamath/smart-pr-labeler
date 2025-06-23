@@ -5,6 +5,16 @@ model = joblib.load("model/model.pkl")
 vectorizer = joblib.load("model/vectorizer.pkl")
 
 def predict_label(title, body):
+    """
+    Predicts the label for a given title and body of text using a pre-trained model.
+
+    Args:
+        title (str): The title text to be classified.
+        body (str): The body text to be classified.
+
+    Returns:
+        str: The predicted label along with its confidence as a percentage, formatted as "<label> (<confidence> confidence)".
+    """
     text = title + " " + body
     X = vectorizer.transform([text])
     label = model.predict(X)[0]
