@@ -3,7 +3,6 @@
 
 Automatically classify GitHub pull requests into labels using AI.
 
-
 Smart PR Labeler is an AI-powered assistant that automatically classifies GitHub pull requests based on their title and body. It suggests labels like bug, feature, refactor, and documentation — helping DevOps teams reduce manual triage, maintain consistent workflows, and speed up code reviews.
 
 Built using NLP and machine learning (TF-IDF + Logistic Regression), this tool transforms noisy, unlabeled PRs into actionable, structured entries in your DevOps pipeline.
@@ -43,9 +42,19 @@ Mock GitHub PR data for rapid prototyping
 - scikit-learn (baseline)
 - Gradio (UI)
 - pandas
+  
+## How to Run
+python model/train_model.py 
+
+python model/predict.py
+
+pip install -r requirements.txt
+
+python app/interface.py
 
 ## Demo
 Coming soon...
 
 ## Author
 Malathi Kamath | AI + DevOps Builder
+
