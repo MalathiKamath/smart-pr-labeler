@@ -2,6 +2,8 @@ from github import Github
 import joblib
 import argparse
 
+
+
 # Load model and vectorizer
 model = joblib.load("model/model.pkl")
 vectorizer = joblib.load("model/vectorizer.pkl")
@@ -12,6 +14,19 @@ def classify(text):
     proba = model.predict_proba(X).max()
     return label, proba
 
+def get_color(label):
+    if label == "bug":
+        return "\033[91m"
+    elif label == "feature":
+        return "\033[92m"
+    elif label == "refactor":
+        return   "\033[96m"
+    elif label == "documentation":
+        return "\033[93m"
+    else:
+        return "\033[95m"
+    
+
 def fetch_and_label_prs(token, repo_name, max_prs=5):
     g = Github(token)
     repo = g.get_repo(repo_name)
@@ -20,7 +35,17 @@ def fetch_and_label_prs(token, repo_name, max_prs=5):
     for pr in pulls:
         text = (pr.title or "") + " " + (pr.body or "")
         label, confidence = classify(text)
-        print(f"[PR #{pr.number}] {pr.title} - > Label: {label} ({confidence:.2%})")
+        RESET = "\033[0m"
+        color = get_color(label)
+        try:
+            pr.add_to_labels(label)
+            print(f"{color}[PR #{pr.number}] {pr.title} -> Label: {label} ({confidence:.2%}) ✅ Label applied{RESET}")
+        except Exception as e:
+            print(f"{color}[PR #{pr.number}] {pr.title} -> Label: {label} ({confidence:.2%}) ⚠️ Could not apply label: {e}{RESET}")
+
+       ## print(f"{color}[PR #{pr.number}] {pr.title} - > Label: {label} ({confidence:.2%}){RESET}")    
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
