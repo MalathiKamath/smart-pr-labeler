@@ -5,6 +5,18 @@ import argparse
 # Load model and vectorizer
 model = joblib.load("model/model.pkl")
 vectorizer = joblib.load("model/vectorizer.pkl")
+def get_color(label):
+    if label == "bug":
+        return "\033[91m"  # Red
+    elif label == "feature":
+        return "\033[92m"  # Green
+    elif label == "refactor":
+        return "\033[94m"  # Cyan
+    elif label == "documentation":
+        return "\033[93m"  # Yellow
+    else:
+        return "\033[95m"  # Magenta
+
 
 def classify(text):
     X = vectorizer.transform([text])
@@ -19,8 +31,10 @@ def fetch_and_label_prs(token, repo_name, max_prs=5):
 
     for pr in pulls:
         text = (pr.title or "") + " " + (pr.body or "")
+        RESET = "\033[0m"
         label, confidence = classify(text)
-        print(f"[PR #{pr.number}] {pr.title} - > Label: {label} ({confidence:.2%})")
+        color = get_color(label)
+        print(f"{color}[PR #{pr.number}] {pr.title} - > Label: {label} ({confidence:.2%}){RESET}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
