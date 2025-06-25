@@ -34,7 +34,13 @@ def fetch_and_label_prs(token, repo_name, max_prs=5):
         RESET = "\033[0m"
         label, confidence = classify(text)
         color = get_color(label)
-        print(f"{color}[PR #{pr.number}] {pr.title} - > Label: {label} ({confidence:.2%}){RESET}")
+        try:
+            pr.add_to_labels(label)
+            print(f"{color}[PR #{pr.number}] {pr.title} -> Label: {label} ({confidence:.2%}) ✅ Label applied{RESET}")
+        except Exception as e:
+            print(f"{color}[PR #{pr.number}] {pr.title} -> Label: {label} ({confidence:.2%}) ❌ Failed to apply label: {e}{RESET}")
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
