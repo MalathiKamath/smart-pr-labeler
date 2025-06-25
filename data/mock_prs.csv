@@ -10,6 +10,23 @@ title,body,label
 "Refactor code flow","Cleaned up AuthService and removed legacy code",refactor
 "Fix customer issue on vulnerability not matching","This PR fixes on vulnerability not matching",bug
 "Fix crash on null pointer","This PR fixes the null pointer crash in login flow",bug
+"Refactor user auth logic","Moved token verification to middleware",refactor
+"Update contributing guide","Added steps for setting up local dev",documentation
+"Add dark mode toggle","Implemented theme switch in settings UI",feature
+"Refactor model loading logic","Moved ML model loading to separate helper module",refactor
+"Refactor API error handler", "Unified all error responses into JSON format",refactor
+"Refactor settings module","Split settings into UI and logic components",refactor
+"Refactor CSS layout","Extracted reusable layout components for flexibility",refactor
+
+"Update README with examples","Added sample commands to run the app",documentation
+"Fix grammar in README","Corrected section headers and minor typos",documentation
+"Update API docs","Clarified request/response format for all endpoints",documentation
+Add contributing guidelines,Added step-by-step setup and PR process,documentation
+
+Refactor Dockerfile,Reduced build time by using multi-stage builds,refactor
+Add unit tests for user model,Covered all user logic with pytest cases,feature
+Fix flaky integration test,Updated test to use fixed seed for consistency,bug
+Update CHANGELOG for v1.1,Documented changes from last sprint,documentation"
 
 
 
